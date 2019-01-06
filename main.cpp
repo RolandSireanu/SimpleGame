@@ -21,6 +21,11 @@ bool isCollision(const vector<sf::Sprite>& carsArg , sf::Sprite& myCarArg)
 	return false;
 }
 
+void functionAvailableJustInMaster()
+{
+
+	return;
+}
 
 int main()
 {
@@ -44,7 +49,7 @@ int main()
 
 	while(window.isOpen())
 	{
-				
+		//Create timer
 		sf::Clock clock;
 		
 		inputOutputSubject.update(window);
