@@ -47,8 +47,7 @@ int main()
 		sf::Clock clock;
 		
 		inputOutputSubject.update(window);
-		
-		//if(isCollision(enemyCarsComponent.getEnemyCars() , my))
+				
 
 		window.clear();
 
