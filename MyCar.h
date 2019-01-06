@@ -93,6 +93,8 @@ class MyCarComponent : public IObserver
 
 	private:
 
+		//Add comment here :D 
+
 		void resetToDefault()
 		{
 			myCar.setPosition(MYCAR_DEFAULT_X , MYCAR_DEFAULT_Y);			
