@@ -38,6 +38,7 @@ int main()
 		std::cout<<"Can't load the music !"<<std::endl;
 	}
 
+	//Let it play !
 	music.play();
 
 
