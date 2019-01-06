@@ -6,7 +6,7 @@
 #include "EnemyCars.h"
 #include "MyCar.h"
 #include "IOSubject.h"
-
+#include <stack>
 
 IOSubject inputOutputSubject;
 MyCarComponent myCarComponent(inputOutputSubject);
