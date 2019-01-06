@@ -21,12 +21,6 @@ bool isCollision(const vector<sf::Sprite>& carsArg , sf::Sprite& myCarArg)
 	return false;
 }
 
-void functionAvailableJustInMaster()
-{
-
-	return;
-}
-
 int main()
 {
 	
