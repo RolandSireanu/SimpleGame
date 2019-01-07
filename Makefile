@@ -1,6 +1,6 @@
 CPP_SOURCE_FILES=main.cpp 
 CPP_SOURCE_FILES += IOSubject.cpp
-CPP_SOURCE_FILES += Display.cpp
+
 
 
 all :

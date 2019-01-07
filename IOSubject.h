@@ -12,6 +12,7 @@ class IOSubject
 
 	public:
 
+		IOSubject() = default;
 
 		void attach(IObserver* obs)
 		{

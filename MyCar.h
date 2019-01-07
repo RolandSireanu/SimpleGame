@@ -45,35 +45,7 @@ class MyCarComponent : public IObserver
 						myCar.setPosition(MYCAR_RIGHT_POSITION , MYCAR_DEFAULT_Y);	
 					}	
 				}
-			}
-
-
-			/*sf::Event event ;
-
-			if(window.pollEvent(event))
-			{	
-				switch(event.type)
-				{
-					case sf::Event::KeyPressed:
-					{
-						if(event.key.code == sf::Keyboard::Left)
-						{				
-							myCar.setPosition(MYCAR_DEFAULT_X , MYCAR_DEFAULT_Y);
-						}
-						else if(event.key.code == sf::Keyboard::Right)
-						{
-							myCar.setPosition(MYCAR_RIGHT_POSITION , MYCAR_DEFAULT_Y);	
-						}				
-
-						break;
-					}
-
-					default :
-						break;
-
-				}	
-			}
-			*/
+			}			
 
 			window.draw(myCar);
 
@@ -91,9 +63,7 @@ class MyCarComponent : public IObserver
 			eventQueue.push(ev);
 		}
 
-	private:
-
-		//Add comment here :D 
+	private:		
 
 		void resetToDefault()
 		{

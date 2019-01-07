@@ -73,7 +73,7 @@ class EnemyCarsComponent
 
 		}
 
-		const vector<sf::Sprite>& getEnemyCars()
+		constexpr const vector<sf::Sprite>& getEnemyCars()
 		{
 			return cars;
 		}

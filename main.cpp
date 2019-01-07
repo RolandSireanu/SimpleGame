@@ -7,13 +7,20 @@
 #include "MyCar.h"
 #include "IOSubject.h"
 #include <stack>
+#include "UserDefConv.h"
 
-IOSubject inputOutputSubject;
-MyCarComponent myCarComponent(inputOutputSubject);
-DisplayComponent display;
-EnemyCarsComponent enemyCarsComponent;
-sf::Music music;
-sf::RenderWindow window(sf::VideoMode(COLS, ROWS), "My window");
+
+namespace 
+{
+
+	IOSubject inputOutputSubject;
+	MyCarComponent myCarComponent(inputOutputSubject);
+	DisplayComponent display;
+	EnemyCarsComponent enemyCarsComponent;
+	sf::Music music;
+	sf::RenderWindow window(sf::VideoMode(COLS, ROWS), "My window");
+
+};
 
 bool isCollision(const vector<sf::Sprite>& carsArg , sf::Sprite& myCarArg)
 {
@@ -25,7 +32,9 @@ int main()
 {
 	
 	sf::Clock tempClock;
+	TestClass tc;
 
+	std::cout<<int(tc)<<std::endl;
 
 	sf::Time elpTime = tempClock.getElapsedTime();
 	std::cout<<"elpTime = "<<elpTime.asMicroseconds()<<std::endl;
