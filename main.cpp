@@ -18,18 +18,16 @@ sf::RenderWindow window(sf::VideoMode(COLS, ROWS), "My window");
 bool isCollision(const vector<sf::Sprite>& carsArg , sf::Sprite& myCarArg)
 {
 
+	
+
+
 	return false;
 }
 
 
 int main()
 {
-	
-	sf::Clock tempClock;
-
-
-	sf::Time elpTime = tempClock.getElapsedTime();
-	std::cout<<"elpTime = "<<elpTime.asMicroseconds()<<std::endl;
+		
 
 	window.setVerticalSyncEnabled(true);
 
