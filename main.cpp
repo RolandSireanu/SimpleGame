@@ -13,11 +13,20 @@
 namespace 
 {
 
-	IOSubject inputOutputSubject;
+	//Input output and my car observer pattern 
+	IOSubject inputOutputSubject;	
 	MyCarComponent myCarComponent(inputOutputSubject);
+
+	//Background of game 
 	DisplayComponent display;
+
+	//Enemy cars component 
 	EnemyCarsComponent enemyCarsComponent;
+
+	//Audio part of game 
 	sf::Music music;
+
+	//Main window of the game 
 	sf::RenderWindow window(sf::VideoMode(COLS, ROWS), "My window");
 
 };
@@ -55,19 +64,28 @@ int main()
 		//Create timer
 		sf::Clock clock;
 		
-		inputOutputSubject.update(window);
-				
-
 		window.clear();
 
+		//Update components 
+		inputOutputSubject.update(window);
 		display.update();		
 		enemyCarsComponent.update(window);
 		myCarComponent.update(window);
 
-		window.draw(display.GetArrayOfVerticies() , display.GetNrOfVerticies() , sf::Lines);				
+		//Draw the background 
+		window.draw(display.GetArrayOfVerticies() , display.GetNrOfVerticies() , sf::Lines);	
+
+		//Display the window 			
 		window.display();
 		sf::Time timeElapsed = clock.getElapsedTime();		
-		//std::cout<<"time elapsed mu = "<<timeElapsed.asMicroseconds()<<std::endl;
+
+
+
+		#ifdef DEBUG
+		std::cout<<"time elapsed mu = "<<timeElapsed.asMicroseconds()<<std::endl;
+		#endif
+
+
 		sf::sleep(sf::milliseconds(20 - timeElapsed.asMilliseconds()));		
 		
 	}
