@@ -34,19 +34,14 @@ namespace
 bool isCollision(const vector<sf::Sprite>& carsArg , sf::Sprite& myCarArg)
 {
 
+	
+
+
 	return false;
 }
 
 int main()
 {
-	
-	sf::Clock tempClock;
-	TestClass tc;
-
-	std::cout<<int(tc)<<std::endl;
-
-	sf::Time elpTime = tempClock.getElapsedTime();
-	std::cout<<"elpTime = "<<elpTime.asMicroseconds()<<std::endl;
 
 	window.setVerticalSyncEnabled(true);
 
@@ -55,19 +50,20 @@ int main()
 		std::cout<<"Can't load the music !"<<std::endl;
 	}
 
-	//Let it play !
 	music.play();
 
 
 	while(window.isOpen())
 	{
 		//Create timer
+				
 		sf::Clock clock;
 		
+		inputOutputSubject.update(window);
+				
+
 		window.clear();
 
-		//Update components 
-		inputOutputSubject.update(window);
 		display.update();		
 		enemyCarsComponent.update(window);
 		myCarComponent.update(window);
@@ -76,6 +72,7 @@ int main()
 		window.draw(display.GetArrayOfVerticies() , display.GetNrOfVerticies() , sf::Lines);	
 
 		//Display the window 			
+		window.draw(display.GetArrayOfVerticies() , display.GetNrOfVerticies() , sf::Lines);				
 		window.display();
 		sf::Time timeElapsed = clock.getElapsedTime();		
 
@@ -86,9 +83,9 @@ int main()
 		#endif
 
 
+		//std::cout<<"time elapsed mu = "<<timeElapsed.asMicroseconds()<<std::endl;
 		sf::sleep(sf::milliseconds(20 - timeElapsed.asMilliseconds()));		
 		
 	}
 
 	return 0;
-}
