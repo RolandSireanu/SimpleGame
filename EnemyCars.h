@@ -26,47 +26,57 @@ class EnemyCarsComponent
 		{
 			if(updateCounter % 2 == 0)
 			{
-				//Update every cars position and size
-				for(sf::Sprite &car : cars)
+				//Update every cars position and size				
+				//Read the current position and size
+				sf::Vector2f position = car->getPosition();
+				sf::Vector2f scale 	  = car->getScale();
+
+				//As near is to my car , it will increase faster 
+				ENEMY_Y_MOVE += 0.55f;
+				ENEMY_SCALE_X += ENEMY_SCALE_FACTOR;
+				ENEMY_SCALE_Y += ENEMY_SCALE_FACTOR;
+
+				//Increase position and size
+				position.x -= ENEMY_X_MOVE;
+				position.y += ENEMY_Y_MOVE;
+				scale.x += ENEMY_SCALE_FACTOR;
+				scale.y += ENEMY_SCALE_FACTOR;
+
+				#ifdef DEBUG
+					std::cout<<"ENEMY_SCALE_X = "<<ENEMY_SCALE_X<<" ENEMY_SCALE_Y = "<<ENEMY_SCALE_Y<<std::endl;
+				#endif
+
+
+				if(outOfScreen(position , window))
+				{	
+					resetToDefault();
+					
+					#ifdef DEBUG						
+						std::cout<<"scale.x = "<<scale.x<<" scale.y = "<<scale.y<<std::endl;
+					#endif						
+																
+					ENEMY_SCALE_X = ENEMY_DEFAULT_SCALE;
+					ENEMY_SCALE_Y = ENEMY_DEFAULT_SCALE;
+					ENEMY_Y_MOVE = 10.f;					
+					
+				}
+				else
 				{
-					//Read the current position and size
-					sf::Vector2f position = car.getPosition();
-					sf::Vector2f scale 	  = car.getScale();
-
-					//Increase position and size
-					position.x -= ENEMY_X_MOVE;
-					position.y += ENEMY_Y_MOVE;
-					scale.x += 0.011;
-					scale.y += 0.011;
-
-					if(outOfScreen(position , window))
-					{
-						position.x = ENEMY_X_LEFT;
-						position.y = ENEMY_Y_LEFT;
-						scale.x = ENEMY_DEFAULT_SCALE;
-						scale.y = ENEMY_DEFAULT_SCALE;						
-					}
-
 					//Set new position and size
-					car.setPosition(position);
-					car.setScale(scale);
-
-					#ifdef DEBUG
-						std::cout<<"position = "<<position.x<<" , "<<position.y<<std::endl;
-						std::cout<<"scale = "<<scale.x<<" , "<<scale.y<<std::endl;
-					#endif
-
-					window.draw(car);
+					car->setPosition(position);
+					car->setScale(scale);
 				}
 
-				//Update 
+				#ifdef DEBUG
+					std::cout<<"position = "<<position.x<<" , "<<position.y<<std::endl;
+					std::cout<<"scale = "<<scale.x<<" , "<<scale.y<<std::endl;
+				#endif
+
+				window.draw(*car);				
 			}
 			else
-			{
-				for(const sf::Sprite &car : cars)
-				{
-					window.draw(car);
-				}				
+			{				
+					window.draw(*car);				
 			}
 
 			updateCounter++;
@@ -81,17 +91,16 @@ class EnemyCarsComponent
 	private:
 
 		void resetToDefault()
-		{
-			cars.clear();
-
-			sf::Sprite temp;
-			temp.setTexture(carTexture);
-			temp.setPosition(ENEMY_X_LEFT , ENEMY_Y_LEFT);
-			temp.setScale(ENEMY_DEFAULT_SCALE , ENEMY_DEFAULT_SCALE);
-			cars.push_back(temp);
+		{			
+			//if(car != nullptr)
+				//delete car;
+			car = new(memArea) sf::Sprite();
+			car->setTexture(carTexture);
+			car->setPosition(ENEMY_X_LEFT , ENEMY_Y_LEFT);
+			car->setScale(ENEMY_DEFAULT_SCALE , ENEMY_DEFAULT_SCALE);
 
 			#ifdef DEBUG
-				std::cout<<"Size of cars vector = "<<cars.size()<<std::endl;
+				//std::cout<<"Size of cars vector = "<<cars.size()<<std::endl;
 			#endif
 
 		}
@@ -110,6 +119,7 @@ class EnemyCarsComponent
 		sf::Texture carTexture;
 		int updateCounter;
 
+		unsigned char* memArea = new unsigned char[sizeof(sf::Sprite)*5];
 		const float ENEMY_X_LEFT = 475.f;
 		const float ENEMY_Y_LEFT = 68.f;
 		const float ENEMY_X_RIGHT = 549.f; 
@@ -118,7 +128,12 @@ class EnemyCarsComponent
 		const float ENEMY_DEFAULT_SIZE_Y = 20;
 		const float ENEMY_DEFAULT_SCALE = 0.10f;
 		const float ENEMY_X_MOVE = 2.7f;
-		const float ENEMY_Y_MOVE = 10.f;
+		const float ENEMY_SCALE_FACTOR = 0.020f;
+		float ENEMY_Y_MOVE = 10.f;
+		float ENEMY_SCALE_X = 0.011f;
+		float ENEMY_SCALE_Y = 0.011f;
+		sf::Sprite* car = nullptr;
+
 
 };
 

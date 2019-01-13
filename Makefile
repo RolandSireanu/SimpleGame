@@ -7,7 +7,7 @@ all :
 	 g++ $(CPP_SOURCE_FILES) -o sfml-app -lsfml-graphics -lsfml-window -lsfml-audio -lsfml-system -lOpenGL
 
 debug:
-	g++ $(CPP_SOURCE_FILES) -o sfml-app -lsfml-graphics -lsfml-window -lsfml-audio -lsfml-system -lOpenGL -DDEBUG
+	g++ $(CPP_SOURCE_FILES) -o sfml-app -lsfml-graphics -lsfml-window -lsfml-audio -lsfml-system -lOpenGL -DDEBUG -Os
 
 run : all
 	./sfml-app
